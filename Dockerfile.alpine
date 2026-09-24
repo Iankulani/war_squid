@@ -1,0 +1,158 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# WAR-SQUID-V1 - Alpine Dockerfile (Lightweight)
+# Author: Ian Carter Kulani
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# ── Stage 1: Builder ───────────────────────────────────────────────────────────
+FROM python:3.11-alpine AS builder
+
+LABEL maintainer="Ian Carter Kulani"
+LABEL description="WAR-SQUID-V1 - Ultimate Cybersecurity Command & Control Platform (Alpine)"
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# Install build dependencies
+RUN apk add --no-cache \
+    build-base \
+    gcc \
+    g++ \
+    make \
+    musl-dev \
+    libffi-dev \
+    openssl-dev \
+    libxml2-dev \
+    libxslt-dev \
+    jpeg-dev \
+    zlib-dev \
+    postgresql-dev \
+    python3-dev \
+    git \
+    curl \
+    wget \
+    linux-headers \
+    cargo \
+    rust
+
+# Create virtual environment
+RUN python -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+# Upgrade pip
+RUN pip install --upgrade pip setuptools wheel
+
+# Copy requirements
+WORKDIR /build
+COPY requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# ── Stage 2: Runtime ───────────────────────────────────────────────────────────
+FROM python:3.11-alpine AS runtime
+
+LABEL maintainer="Ian Carter Kulani"
+LABEL description="WAR-SQUID-V1 - Ultimate Cybersecurity Command & Control Platform (Alpine)"
+LABEL version="1.0.0"
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONPATH=/app \
+    PATH="/opt/venv/bin:$PATH" \
+    WAR_SQUID_HOME=/app \
+    WAR_SQUID_CONFIG=/app/.war_squid_v1 \
+    TZ=UTC
+
+# Install runtime dependencies
+RUN apk add --no-cache \
+    # Network tools
+    iputils \
+    traceroute \
+    bind-tools \
+    net-tools \
+    iproute2 \
+    nmap \
+    netcat-openbsd \
+    tcpdump \
+    arping \
+    whois \
+    curl \
+    wget \
+    openssh-client \
+    telnet \
+    socat \
+    # Security tools
+    nikto \
+    hydra \
+    john \
+    hashcat \
+    sqlmap \
+    # Utilities
+    ca-certificates \
+    openssl \
+    libffi \
+    libxml2 \
+    libxslt \
+    jpeg \
+    zlib \
+    procps \
+    htop \
+    vim \
+    nano \
+    less \
+    file \
+    unzip \
+    zip \
+    tar \
+    gzip \
+    bzip2 \
+    xz \
+    # Python runtime
+    py3-pip \
+    # Chromium for Selenium
+    chromium \
+    chromium-chromedriver \
+    # Fonts
+    ttf-liberation \
+    font-noto \
+    # Timezone
+    tzdata
+
+# Copy virtual environment from builder
+COPY --from=builder /opt/venv /opt/venv
+
+# Create app directory
+WORKDIR /app
+
+# Create non-root user
+RUN addgroup -S warsquid && adduser -S -G warsquid -h /app warsquid
+
+# Copy application files
+COPY --chown=warsquid:warsquid . .
+
+# Create necessary directories
+RUN mkdir -p /app/.war_squid_v1/{payloads,workspaces,scans,phishing_pages,phishing_templates,captured_credentials,ssh_keys,traffic_logs,nikto_results,web_templates,sessions,spear_phishing,email_templates,dos_logs,agents,c2_logs,modules,network_monitor,keylog_exfil,deployments,domain_hosting,cracking,arp_logs,mac_logs,nat_logs,animation_cache,platform_logs,docker_scans,email_composer,threat_monitor} \
+    /app/war_squid_reports/{graphics,pdf_reports,charts} \
+    /app/temp \
+    && chown -R warsquid:warsquid /app
+
+# Set permissions
+RUN chmod +x /app/*.py 2>/dev/null || true \
+    && chmod +x /app/*.sh 2>/dev/null || true
+
+# Switch to non-root user
+USER warsquid
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD python -c "import sys; sys.exit(0)" || exit 1
+
+# Expose ports
+EXPOSE 5000 5001 8080 4444 9000
+
+# Default command
+CMD ["python", "war_squid.py"]

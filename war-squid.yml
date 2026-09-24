@@ -1,0 +1,18 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# WAR-SQUID-V1 - Grafana Dashboard Provisioning
+# ═══════════════════════════════════════════════════════════════════════════════
+
+apiVersion: 1
+
+providers:
+  - name: 'WAR-SQUID'
+    orgId: 1
+    folder: 'WAR-SQUID'
+    folderUid: 'war-squid'
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 30
+    allowUiUpdates: true
+    options:
+      path: /etc/grafana/provisioning/dashboards
+      foldersFromFilesStructure: true

@@ -1,0 +1,425 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# WAR-SQUID-V1 - PyProject Configuration
+# Author: Ian Carter Kulani
+# ═══════════════════════════════════════════════════════════════════════════════
+
+[build-system]
+requires = ["setuptools>=68.0", "wheel>=0.41.0", "setuptools-scm>=8.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "war-squid-v1"
+version = "1.0.0"
+description = "Ultimate Cybersecurity Command & Control Platform"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Ian Carter Kulani", email = "ian.carter.kulani@example.com"}
+]
+maintainers = [
+    {name = "Ian Carter Kulani", email = "ian.carter.kulani@example.com"}
+]
+keywords = ["security", "cybersecurity", "pentesting", "networking", "automation"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+    "Topic :: System :: Networking",
+    "Topic :: System :: Systems Administration",
+    "Topic :: Utilities",
+]
+requires-python = ">=3.8"
+dependencies = [
+    # Core
+    "colorama>=0.4.6",
+    "requests>=2.31.0",
+    "psutil>=5.9.0",
+    "python-dateutil>=2.8.2",
+    "pytz>=2023.3",
+    "six>=1.16.0",
+    "urllib3>=2.0.0",
+    
+    # Cryptography & Security
+    "cryptography>=41.0.0",
+    "paramiko>=3.3.0",
+    "bcrypt>=4.0.1",
+    "passlib>=1.7.4",
+    "pyotp>=2.9.0",
+    
+    # Networking
+    "scapy>=2.5.0",
+    "dnspython>=2.4.0",
+    "netifaces>=0.11.0",
+    "netaddr>=0.9.0",
+    "whois>=0.9.5",
+    
+    # Web Framework
+    "Flask>=2.3.0",
+    "Flask-SocketIO>=5.3.0",
+    "Flask-CORS>=4.0.0",
+    "Flask-Limiter>=3.5.0",
+    "Werkzeug>=2.3.0",
+    "Jinja2>=3.1.0",
+    "gunicorn>=21.2.0",
+    "eventlet>=0.33.0",
+    
+    # Bot Integrations
+    "discord.py>=2.3.0",
+    "telethon>=1.29.0",
+    "slack-sdk>=3.23.0",
+    
+    # Google APIs
+    "google-auth>=2.23.0",
+    "google-api-python-client>=2.100.0",
+    
+    # Web Automation
+    "selenium>=4.14.0",
+    "beautifulsoup4>=4.12.0",
+    "lxml>=4.9.0",
+    
+    # Data Processing
+    "numpy>=1.24.0",
+    "pandas>=2.0.0",
+    
+    # Visualization
+    "matplotlib>=3.7.0",
+    "seaborn>=0.12.0",
+    
+    # PDF & Documents
+    "reportlab>=4.0.0",
+    "PyPDF2>=3.0.0",
+    "Pillow>=10.0.0",
+    
+    # QR & Barcodes
+    "qrcode>=7.4.0",
+    
+    # URL Shortening
+    "pyshorteners>=1.0.1",
+    
+    # Keylogging & Input
+    "pynput>=1.7.6",
+    "pyautogui>=0.9.54",
+    "pyperclip>=1.8.2",
+    
+    # Notifications
+    "plyer>=2.1.0",
+    
+    # Scheduling
+    "schedule>=1.2.0",
+    
+    # Data Formats
+    "PyYAML>=6.0",
+    
+    # CLI & Formatting
+    "tabulate>=0.9.0",
+    "tqdm>=4.66.0",
+    "click>=8.1.0",
+    "rich>=13.5.0",
+    
+    # Faker
+    "Faker>=19.6.0",
+    
+    # Email
+    "email-validator>=2.0.0",
+    
+    # Database
+    "SQLAlchemy>=2.0.0",
+    
+    # Caching
+    "redis>=5.0.0",
+    "cachetools>=5.3.0",
+    
+    # Async
+    "aiohttp>=3.8.0",
+    "aiofiles>=23.2.0",
+    
+    # Logging
+    "loguru>=0.7.0",
+    
+    # Docker
+    "docker>=6.1.0",
+    
+    # SSH
+    "fabric>=3.2.0",
+    
+    # Misc
+    "python-dotenv>=1.0.0",
+    "termcolor>=2.3.0",
+    "art>=6.0",
+    "pyfiglet>=0.8.post1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+    "pytest-mock>=3.11.0",
+    "pytest-xdist>=3.3.0",
+    "pytest-timeout>=2.1.0",
+    "pytest-html>=3.2.0",
+    "coverage>=7.3.0",
+    "tox>=4.11.0",
+    "black>=23.9.0",
+    "flake8>=6.1.0",
+    "pylint>=2.17.0",
+    "mypy>=1.5.0",
+    "isort>=5.12.0",
+    "bandit>=1.7.5",
+    "safety>=2.3.0",
+    "pre-commit>=3.4.0",
+    "sphinx>=7.2.0",
+    "sphinx-rtd-theme>=1.3.0",
+    "memory-profiler>=0.61.0",
+    "line-profiler>=4.1.0",
+    "ipdb>=0.13.13",
+    "build>=1.0.0",
+    "twine>=4.0.2",
+    "wheel>=0.41.0",
+    "types-requests>=2.31.0",
+    "types-psutil>=5.9.0",
+]
+full = [
+    "war-squid-v1[dev]",
+    "webdriver-manager>=4.0.0",
+    "plotly>=5.17.0",
+    "kaleido>=0.2.1",
+    "pdfplumber>=0.10.0",
+    "python-docx>=0.8.11",
+    "python-barcode>=0.14.0",
+    "GPUtil>=1.4.0",
+    "APScheduler>=3.10.0",
+    "toml>=0.10.2",
+    "xmltodict>=0.13.0",
+    "argon2-cffi>=23.1.0",
+    "blessed>=1.20.0",
+    "halo>=0.0.31",
+]
+monitoring = [
+    "prometheus-client>=0.18.0",
+    "grafana-api>=1.0.3",
+]
+docs = [
+    "sphinx>=7.2.0",
+    "sphinx-rtd-theme>=1.3.0",
+    "myst-parser>=2.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/ian-carter-kulani/war-squid"
+Documentation = "https://github.com/ian-carter-kulani/war-squid/docs"
+Repository = "https://github.com/ian-carter-kulani/war-squid.git"
+"Bug Tracker" = "https://github.com/ian-carter-kulani/war-squid/issues"
+Changelog = "https://github.com/ian-carter-kulani/war-squid/blob/main/CHANGELOG.md"
+
+[project.scripts]
+war-squid = "war_squid:main"
+war-squid-check = "requirements_check:main"
+war-squid-health = "health:main"
+
+[project.gui-scripts]
+war-squid-gui = "war_squid:main_gui"
+
+[tool.setuptools]
+packages = {find = {exclude = ["tests", "tests.*", "docs"]}}
+py-modules = ["war_squid", "requirements_check", "health"]
+include-package-data = true
+zip-safe = false
+
+[tool.setuptools.package-data]
+"*" = [
+    "*.txt",
+    "*.md",
+    "*.json",
+    "*.yaml",
+    "*.yml",
+    "*.html",
+    "*.css",
+    "*.js",
+    "Dockerfile",
+    "Dockerfile.alpine",
+    "docker-compose.yml",
+    ".gitlab-ci.yml",
+    "Makefile",
+]
+
+# ── Black ──────────────────────────────────────────────────────────────────────
+[tool.black]
+line-length = 100
+target-version = ["py38", "py39", "py310", "py311", "py312"]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+# ── isort ──────────────────────────────────────────────────────────────────────
+[tool.isort]
+profile = "black"
+line_length = 100
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+skip_gitignore = true
+known_first_party = ["war_squid", "requirements_check", "health"]
+
+# ── pytest ─────────────────────────────────────────────────────────────────────
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-ra",
+    "--strict-markers",
+    "--strict-config",
+    "--cov=.",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--cov-report=xml",
+]
+markers = [
+    "slow: marks tests as slow",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+    "network: marks tests requiring network access",
+    "security: marks security-related tests",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+]
+
+# ── coverage ───────────────────────────────────────────────────────────────────
+[tool.coverage.run]
+source = ["."]
+omit = [
+    "tests/*",
+    "*/__pycache__/*",
+    "*/venv/*",
+    "setup.py",
+]
+branch = true
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if __name__ == .__main__.:",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if False:",
+]
+ignore_errors = true
+
+# ── mypy ───────────────────────────────────────────────────────────────────────
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+check_untyped_defs = true
+disallow_untyped_decorators = false
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+ignore_missing_imports = true
+exclude = [
+    "venv/",
+    "build/",
+    "dist/",
+]
+
+[[tool.mypy.overrides]]
+module = [
+    "scapy.*",
+    "paramiko.*",
+    "discord.*",
+    "telethon.*",
+    "slack_sdk.*",
+    "selenium.*",
+    "pynput.*",
+    "pyautogui.*",
+    "pyperclip.*",
+    "plyer.*",
+    "qrcode.*",
+    "pyshorteners.*",
+]
+ignore_missing_imports = true
+
+# ── pylint ─────────────────────────────────────────────────────────────────────
+[tool.pylint.main]
+py-version = "3.11"
+jobs = 0
+ignore = ["venv", "build", "dist", "tests"]
+ignore-patterns = ["^\\.#"]
+persistent = true
+
+[tool.pylint.messages_control]
+disable = [
+    "C0114",  # missing-module-docstring
+    "C0115",  # missing-class-docstring
+    "C0116",  # missing-function-docstring
+    "C0103",  # invalid-name
+    "R0913",  # too-many-arguments
+    "R0914",  # too-many-locals
+    "R0915",  # too-many-statements
+    "R0902",  # too-many-instance-attributes
+    "R0903",  # too-few-public-methods
+    "W0703",  # broad-except
+    "E1101",  # no-member
+    "W0613",  # unused-argument
+]
+
+[tool.pylint.format]
+max-line-length = 100
+indent-string = "    "
+
+[tool.pylint.design]
+max-args = 10
+max-locals = 20
+max-statements = 60
+max-attributes = 15
+max-bool-expr = 5
+max-branches = 15
+max-parents = 10
+max-public-methods = 30
+
+# ── bandit ─────────────────────────────────────────────────────────────────────
+[tool.bandit]
+exclude_dirs = ["tests", "venv", "build", "dist"]
+skips = ["B101", "B102", "B110", "B112", "B307", "B310", "B311", "B324", "B404", "B602", "B603", "B604", "B605", "B606", "B607", "B608", "B610", "B611"]
+
+# ── flake8 ─────────────────────────────────────────────────────────────────────
+# Note: flake8 doesn't support pyproject.toml natively, use setup.cfg or .flake8
