@@ -38,3 +38,5 @@ python3 war_squid.py
 # References
 
 # Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Iankulani/war_squid&type=Date)](https://star-history.com/#Iankulani/war_squid&Date)
