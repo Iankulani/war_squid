@@ -1,7 +1,10 @@
 # War squid 
 
-
+<div align="center">
+  
 <img width="360" height="360" alt="war" src="https://github.com/user-attachments/assets/381d5349-d539-48ca-8cb5-c4767c3d76d8" />
+</div>
+
 
 War Squid is a cybersecurity-focused project developed as part of the Accurate Cyber Defense ecosystem. It is designed as a modular security tool for authorized cybersecurity research, security testing, cyber-defense training, and controlled laboratory environments.
 
